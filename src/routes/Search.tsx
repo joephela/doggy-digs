@@ -190,6 +190,7 @@ export function Search() {
                     height: 140,
                   }}
                 />
+                <h4>{recommendedDog.name}</h4>
                 <DataList.Root>
                   <DataList.Item>
                     <DataList.Label minWidth="88px">Breed</DataList.Label>
