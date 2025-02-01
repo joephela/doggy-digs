@@ -24,6 +24,18 @@ const ageInputStyle = css`
   max-width: 80px;
 `
 
+const fieldStyle = css`
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+
+const mainContainerStyle = css`
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`
+
 const FAVORITE_STORAGE_KEY = 'doggy-digs-favorites'
 
 export function Search() {
@@ -72,7 +84,7 @@ export function Search() {
     <Container size="3">
       <h2>Lets find you a pup.</h2>
       <Flex gap="4" wrap={'wrap'} m="2" justify={'between'}>
-        <Flex direction={'column'} gap={'1'}>
+        <Flex direction={'column'} gap={'1'} css={fieldStyle}>
           <label htmlFor="breed">Breed</label>
           <Select.Root value={breed ?? ''} onValueChange={setBreed}>
             <Select.Trigger placeholder="Choose a breed" id="breed" />
@@ -89,7 +101,7 @@ export function Search() {
           </Select.Root>
         </Flex>
 
-        <Flex direction={'column'} gap={'1'}>
+        <Flex direction={'column'} gap={'1'} css={fieldStyle}>
           <label htmlFor="zip">Zip code</label>
           <TextField.Root
             id="zip"
@@ -99,7 +111,7 @@ export function Search() {
           />
         </Flex>
 
-        <Flex direction={'column'} gap={'1'}>
+        <Flex direction={'column'} gap={'1'} css={fieldStyle}>
           <label htmlFor="age">Age</label>
           <Flex gap={'1'}>
             <TextField.Root
@@ -120,7 +132,8 @@ export function Search() {
             />
           </Flex>
         </Flex>
-        <Flex direction={'column'} gap={'1'}>
+
+        <Flex direction={'column'} gap={'1'} css={fieldStyle}>
           <label htmlFor="sort">Sort by</label>
           <Select.Root value={sort ?? ''} onValueChange={setSort}>
             <Select.Trigger placeholder="Sort by" id="sort" />
@@ -137,7 +150,8 @@ export function Search() {
             </Select.Content>
           </Select.Root>
         </Flex>
-        <Flex direction={'column'} gap={'1'}>
+
+        <Flex direction={'column'} gap={'1'} css={fieldStyle}>
           <label htmlFor="size">Results per page</label>
           <Select.Root value={size ?? ''} onValueChange={setSize}>
             <Select.Trigger placeholder="Results per page" id="size" />
@@ -151,6 +165,7 @@ export function Search() {
             </Select.Content>
           </Select.Root>
         </Flex>
+
         {recommendedDog ? (
           <Dialog.Root open={recommendedDog !== null}>
             <Dialog.Trigger>
@@ -235,7 +250,13 @@ export function Search() {
         from={from}
         setFrom={setFrom}
       />
-      <Flex gap="4" wrap={'wrap'} m="2" align={'center'}>
+      <Flex
+        gap="4"
+        wrap={'wrap'}
+        m="2"
+        align={'center'}
+        css={mainContainerStyle}
+      >
         {favoriteResults?.map((dog: Dog) => {
           return (
             <Card
