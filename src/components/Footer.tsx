@@ -36,7 +36,7 @@ export function Footer() {
       <p>Copyright © 2025 Joseph Phelan.</p>
       <div css={footerTextWrapperStyle}>
         <a
-          href="https://github.com/joephela/2024-github-base"
+          href="https://github.com/joephela/doggy-digs"
           rel="noreferrer"
           target="_blank"
         >

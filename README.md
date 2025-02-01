@@ -16,3 +16,4 @@ There are a number of things that can be improved in this project. I set a time 
 - Add transitions to cards
 - Evaluate A11y and improve any accessibility issues
 - Make logout work
+- Move state values to url parameters
