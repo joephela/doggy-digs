@@ -1,6 +1,7 @@
 # Doggy Digs
 
 A sample search app which can help you locate a new companion.
+https://doggy-digs.vercel.app/
 
 ## Running Locally
 
