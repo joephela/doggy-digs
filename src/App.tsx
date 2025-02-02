@@ -9,7 +9,14 @@ import { Theme } from '@radix-ui/themes'
 import '@radix-ui/themes/styles.css'
 
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 2000,
+        refetchOnWindowFocus: false,
+      },
+    },
+  })
   const router = createBrowserRouter([
     {
       children: [

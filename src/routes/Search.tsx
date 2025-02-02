@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@radix-ui/themes'
 import { useQuery } from '@tanstack/react-query'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import {
   Dog,
   getBreeds,
@@ -19,6 +19,7 @@ import {
 import { Card } from '../components/Card'
 import { css } from '@emotion/react'
 import { Pagination } from '../components/Pagination'
+import { useDebounce } from '../util/useDebounce'
 
 const ageInputStyle = css`
   max-width: 80px;
@@ -48,6 +49,7 @@ export function Search() {
   const [from, setFrom] = useState('0')
   const [recommendedDog, setRecommendedDog] = useState<Dog | null>(null)
   const [zipCode, setZipCode] = useState<string>()
+  const debouncedSetZipCode = useDebounce(setZipCode, 500)
 
   useLayoutEffect(() => {
     const storedFavorites = localStorage.getItem(FAVORITE_STORAGE_KEY)
@@ -55,6 +57,14 @@ export function Search() {
       setFavorites(JSON.parse(storedFavorites))
     }
   }, [])
+
+  // Scroll to top when navigating to next page
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [from])
 
   const { data: breeds } = useQuery({
     queryKey: ['breeds'],
@@ -107,7 +117,7 @@ export function Search() {
             id="zip"
             size="2"
             placeholder="Zip code"
-            onChange={(e) => setZipCode(e.target.value)}
+            onChange={(e) => debouncedSetZipCode(e.target.value)}
           />
         </Flex>
 
@@ -182,6 +192,7 @@ export function Search() {
                 <img
                   src={recommendedDog.img}
                   alt="dog picture"
+                  aria-label={`picture of ${recommendedDog.name}`}
                   style={{
                     display: 'block',
                     objectFit: 'contain',
