@@ -12,6 +12,10 @@ const cardStyle = css`
   width: 200px;
   border: 2px solid transparent;
 
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+
   &:hover {
     transform: translateY(-2px);
     transition: transform 0.2s;
@@ -29,7 +33,8 @@ export function Card({ dog, isFavorite, setFavorite }: CardProps) {
       <Inset clip="padding-box" side="top" pb="current">
         <img
           src={dog.img}
-          alt="dog picture"
+          alt={`picture of ${dog.name}`}
+          arial-label={`picture of ${dog.name}`}
           style={{
             display: 'block',
             objectFit: 'contain',

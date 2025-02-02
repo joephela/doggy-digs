@@ -45,7 +45,12 @@ export function Header() {
     <header css={headerWrapperStyle}>
       <div css={imageHeaderStyle}>
         <Link to="/">
-          <img src={dog} css={avatarStyle} alt="Doggy digs logo" />
+          <img
+            src={dog}
+            css={avatarStyle}
+            alt="Doggy digs logo"
+            aria-label="Doggy digs logo"
+          />
         </Link>
 
         <span css={headingStyles}>Doggy Digs</span>
